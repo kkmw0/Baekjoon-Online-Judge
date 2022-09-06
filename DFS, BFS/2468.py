@@ -32,6 +32,7 @@ for h in range(hmin - 1, hmax + 1):
     result = 0
     chk = [[0] * n for _ in range(n)]
     for i in range(n):
+
         for j in range(n):
             if dfs(i, j, h, chk) == True:
                 result += 1
