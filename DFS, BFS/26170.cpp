@@ -42,6 +42,12 @@ int main(void){
     }
     cin >> r >> c;
     dfs(r, c, 0, 0);
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            cout << tmp[i][j];
+        }
+        cout << '\n';
+    }
     if(result >= 1e9) cout << -1 << '\n';
     else cout << result << '\n';
     return 0;
