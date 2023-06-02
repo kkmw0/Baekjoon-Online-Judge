@@ -1,29 +1,29 @@
 #include <iostream>
-#include <stack>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
-int n;
-int arr[500001];
-stack<pair<int, int>> s;
+int n, arr[500000];
+stack<pair<int, int>> stk;
 
 int main(void){
     ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-
     cin >> n;
-    vector<int> answer(n + 1, 0);
-    for(int i = 1; i <= n; i++) cin >> arr[i];
+    for(int i = 0; i < n; i++) cin >> arr[i];
 
-    for(int i = n; i >= 1; i--){
-        while(!s.empty()){
-            pair<int, int> now = s.top();
-            if(now.first >= arr[i]) break;
-            answer[now.second] = i;
-            s.pop();
+    vector<int> result(n, 0);
+    for(int i = n - 1; i >= 0; i--){
+        while(!stk.empty()){
+            int idx = stk.top().first;
+            int height = stk.top().second;
+
+            if(arr[i] <= height) break;
+            result[idx] = i + 1;
+            stk.pop();
         }
-        s.push({arr[i], i});
+        stk.push({i, arr[i]});
     }
-    for(int i = 1; i <= n; i++) cout << answer[i] << ' ';
+    for(int i = 0; i < n; i++) cout << result[i] << ' ';
     return 0;
 }
